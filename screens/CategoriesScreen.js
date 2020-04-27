@@ -1,10 +1,14 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, Button, StyleSheet} from 'react-native';
 
-export default function CategoriesScreen() {
+export default function CategoriesScreen({ navigation }) {
     return (
         <View style={styles.screen}>
             <Text>The Categories Screen</Text>
+            <Button 
+                title="Go To Meals"
+                onPress={() => navigation.navigate({routeName: 'CategoryMeals'})}
+            />
         </View>
     );
 }

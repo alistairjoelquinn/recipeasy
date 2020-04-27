@@ -7,7 +7,7 @@ export default function CategoriesScreen({ navigation }) {
             <Text>The Categories Screen</Text>
             <Button 
                 title="Go To Meals"
-                onPress={() => navigation.navigate({routeName: 'CategoryMeals'})}
+                onPress={() => navigation.navigate('CategoryMeals')}
             />
         </View>
     );

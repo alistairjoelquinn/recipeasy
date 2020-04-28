@@ -1,6 +1,8 @@
 import React from 'react';
 import {View, Text, Button, FlatList, StyleSheet} from 'react-native';
 
+import { CATEGORIES } from '../data/test-data';
+
 export default function CategoriesScreen({ navigation }) {
     return (
         <FlatList numColumns={2}

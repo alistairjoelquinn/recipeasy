@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, Platform, TouchableNativeFeedback, TouchableOpacity, TouchableNativeFeedbackBase } from 'react-native';
+import {View, Text, StyleSheet, Platform, TouchableNativeFeedback, TouchableOpacity } from 'react-native';
 
 export default function CategoryTile({ title, onSelect, color }) {
     let TouchableBox = TouchableOpacity;

@@ -9,7 +9,7 @@ export default function CategoriesScreen({ navigation }) {
         return (
             <CategoryTile 
                 title={itemData.item.title}
-                id={itemData.item.id}
+                color={itemData.item.color}
                 onSelect={() => navigation.navigate({
                     routeName: 'CategoryMeals',
                     params: {

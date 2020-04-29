@@ -1,9 +1,8 @@
 import React from 'react';
 import {View, Text, FlatList, 
-    StyleSheet, TouchableOpacity, Platform} from 'react-native';
+    StyleSheet, TouchableOpacity } from 'react-native';
 
 import { CATEGORIES } from '../data/test-data';
-import Colors from '../constants/Colors';
 
 export default function CategoriesScreen({ navigation }) {
     const renderGridItem = itemData => {
@@ -32,14 +31,6 @@ export default function CategoriesScreen({ navigation }) {
         />
     );
 }
-
-CategoriesScreen.navigationOptions = {
-    headerTitle: 'Meal Categories',
-    headerStyle: {
-        backgroundColor: Platform.OS === 'android' ? Colors.primary : 'white'
-    },
-    headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primary
-};
 
 const styles = StyleSheet.create({
     screen: {

@@ -9,7 +9,12 @@ export default function CategoriesScreen({ navigation }) {
     const renderGridItem = itemData => {
         return (
             <TouchableOpacity 
-                onPress={() => navigation.navigate('CategoryMeals')}
+                onPress={() => navigation.navigate({
+                    routeName: 'CategoryMeals',
+                    params: {
+                        categoryId: itemData.item.id
+                    }
+                })}
                 style={styles.gridItem}
             >
                 <View >

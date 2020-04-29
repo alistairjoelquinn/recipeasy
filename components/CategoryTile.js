@@ -1,13 +1,21 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import {View, Text, StyleSheet, Platform, TouchableNativeFeedback, TouchableOpacity, TouchableNativeFeedbackBase } from 'react-native';
 
 export default function CategoryTile({ title, onSelect, color }) {
+    let TouchableBox = TouchableOpacity;
+
+    if(Platform.OS === 'android' && Platform.Version >= 21) {
+        TouchableBox = TouchableNativeFeedback;
+    }
+
     return (
-        <TouchableOpacity style={styles.gridItem} onPress={onSelect}>
-            <View style={{ ...styles.container , ...{backgroundColor: color} }}>
-                <Text>{title}</Text>
-            </View>
-        </TouchableOpacity>
+        <View style={styles.gridItem}>
+            <TouchableBox style={{flex: 1}} onPress={onSelect}>
+                <View style={{ ...styles.container , ...{backgroundColor: color} }}>
+                    <Text style={styles.title} numberOfLines={2}>{title}</Text>
+                </View>
+            </TouchableBox>
+        </View>
     );
 }
 
@@ -16,6 +24,8 @@ const styles = StyleSheet.create({
         flex: 1,
         margin: 15,
         height: 150,
+        borderRadius: 10,
+        overflow: 'hidden'
     },
     container: {
         flex: 1,
@@ -28,5 +38,10 @@ const styles = StyleSheet.create({
         padding: 15,
         justifyContent: 'flex-end',
         alignItems: 'flex-end'
+    },
+    title: {
+        fontFamily: 'open-sans-bold',
+        fontSize: 18,
+        textAlign: 'right'
     }
 });

@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
 
+import TextDefault from './TextDefault';
+
 export default function MealItem({ title, image, duration, complexity, affordability, onSelect }) {
     return (
         <View style={styles.mealItem}>
@@ -22,9 +24,9 @@ export default function MealItem({ title, image, duration, complexity, affordabi
                             </ImageBackground>
                     </View>
                     <View style={{ ...styles.mealRow, ...styles.mealDetail }}>
-                        <Text>{duration} minutes</Text>
-                        <Text>{complexity.toUpperCase()}</Text>
-                        <Text>{affordability.toUpperCase()}</Text>
+                        <TextDefault>{duration} minutes</TextDefault>
+                        <TextDefault>{complexity.toUpperCase()}</TextDefault>
+                        <TextDefault>{affordability.toUpperCase()}</TextDefault>
                     </View>
                 </View>
             </TouchableOpacity>

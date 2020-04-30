@@ -25,10 +25,7 @@ const defaultStackOptions = {
 
 const MealsNavigator = createStackNavigator({
     Categories: {
-        screen: CategoriesScreen,
-        navigationOptions: {
-            headerTitle: 'Meal Categories'
-        }
+        screen: CategoriesScreen
     },
     CategoryMeals: {
         screen: CategoryMealsScreen

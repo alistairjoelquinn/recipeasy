@@ -1,13 +1,17 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
+import MealList from '../components/MealList';
+
 export default function FavouritesScreen() {
     return (
-        <View style={styles.screen}>
-            <Text>The Favourites Screen</Text>
-        </View>
+        <MealList />
     );
 }
+
+FavouritesScreen.navigationOptions = {
+    headerTitle: 'Your Favourites!'
+};
 
 const styles = StyleSheet.create({
     screen: {

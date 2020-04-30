@@ -3,6 +3,7 @@ import {View, FlatList, Text, StyleSheet } from 'react-native';
 
 import { CATEGORIES, MEALS } from '../data/test-data';
 import MealItem from '../components/MealItem';
+import MealList from '../components/MealList';
 
 export default function CategoryMealsScreen({ navigation }) {
     const catId = navigation.getParam('categoryId');
@@ -28,13 +29,11 @@ export default function CategoryMealsScreen({ navigation }) {
     };
 
     return (
-        <View style={styles.screen}>
-            <FlatList 
-                data={displayMeals} 
-                renderItem={renderMeal}
-                style={{width: '100%'}}
-            />
-        </View>
+        <MealList 
+            data={displayMeals} 
+            renderItem={renderMeal}
+            style={{width: '100%'}}
+        />
     );
 }
 

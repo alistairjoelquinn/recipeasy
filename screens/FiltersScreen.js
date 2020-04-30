@@ -5,6 +5,20 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import CustomHeaderButton from '../components/CustomHeaderButton';
 import Colors from '../constants/Colors';
 
+const FilterSwitch = ({ value, onChange, label }) => {
+    return (
+        <View style={styles.filterContainer}>
+            <Text>{label}</Text>
+            <Switch 
+                trackColor={{true: Colors.primary}} 
+                thumbColor={Platform.OS === 'android' ? Colors.primary : ''}
+                value={value} 
+                onValueChange={onChange}
+            />
+        </View>
+    );
+};
+
 export default function FiltersScreen() {
     const [isGlutenFree, setIsGlutenFree] = useState(false);
     const [isVegan, setIsVegan] = useState(false);
@@ -13,43 +27,11 @@ export default function FiltersScreen() {
 
     return (
         <View style={styles.screen}>
-            <Text style={styles.title}>Available Filters / Restrictions</Text>
-            <View style={styles.filterContainer}>
-                <Text>Gluten Free</Text>
-                <Switch 
-                    trackColor={{true: Colors.primary}} 
-                    thumbColor={Colors.primary}
-                    value={isGlutenFree} 
-                    onValueChange={setIsGlutenFree}
-                />
-            </View>
-            <View style={styles.filterContainer}>
-                <Text>Vegan</Text>
-                <Switch 
-                    thumbColor={Colors.primary} 
-                    trackColor={{true: Colors.primary}} 
-                    value={isVegan} 
-                    onValueChange={setIsVegan}
-                />
-            </View>
-            <View style={styles.filterContainer}>
-                <Text>Vegetarian</Text>
-                <Switch 
-                    thumbColor={Colors.primary} 
-                    trackColor={{true: Colors.primary}} 
-                    value={isVegetarian} 
-                    onValueChange={setIsVegetarian}
-                />
-            </View>
-            <View style={styles.filterContainer}>
-                <Text>Lactose Free</Text>
-                <Switch 
-                    thumbColor={Colors.primary} 
-                    trackColor={{true: Colors.primary}} 
-                    value={isLactoseFree} 
-                    onValueChange={setIsLactoseFree}
-                />
-            </View>
+        <Text style={styles.title}>Available Filters / Restrictions</Text>
+            <FilterSwitch label="Gluten Free" value={isGlutenFree} onChange={newValue => setIsGlutenFree(newValue)} />
+            <FilterSwitch label="Vegan" value={isVegan} onChange={newValue => setIsVegan(newValue)} />
+            <FilterSwitch label="Vegetarian" value={isVegetarian} onChange={newValue => setIsVegetarian(newValue)} />
+            <FilterSwitch label="Lactose Free" value={isLactoseFree} onChange={newValue => setIsLactoseFree(newValue)} />
         </View>
     );
 }

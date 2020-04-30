@@ -85,7 +85,7 @@ const MealsFavTabNavigator =
                 }});
 
 const MainNavigator = createDrawerNavigator({
-        Favs: MealsFavTabNavigator,
+        Favourites: MealsFavTabNavigator,
         Filters: filterNavigator
 });
 

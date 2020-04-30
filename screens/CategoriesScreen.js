@@ -31,9 +31,20 @@ export default function CategoriesScreen({ navigation }) {
     );
 };
 
-CategoriesScreen.navigationOptions = {
-    headerTitle: 'Categories',
-    headerLeft: () => <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-        <Item title="Menu" iconName="ios-menu" onPress={() => {}} />
-    </HeaderButtons>
+CategoriesScreen.navigationOptions = navData => {
+    return (
+        { 
+        headerTitle: 'Categories',
+        headerLeft: 
+        () => <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+                <Item 
+                    title="Menu" 
+                    iconName="ios-menu" 
+                    onPress={() => {
+                        navData.navigation.toggleDrawer();
+                    }} 
+                />
+            </HeaderButtons> 
+        }
+    );
 };

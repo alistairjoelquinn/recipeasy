@@ -10,8 +10,19 @@ export default function CategoryMealsScreen({ navigation }) {
     const renderMeal = itemData => {
         return (
             <MealItem 
-                itemData={itemData} 
-                onSelect={() => {}}
+                title={itemData.item.title}
+                image={itemData.item.imageUrl}
+                duration={itemData.item.duration}
+                complexity={itemData.item.complexity}
+                affordability={itemData.item.affordability}
+                onSelect={() => {
+                    navigation.navigate({
+                        routeName: 'MealDetail',
+                        params: {
+                            mealId: itemData.item.id
+                        }
+                    });
+                }}
             />
         );
     };

@@ -1,14 +1,14 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
 
-export default function MealItem({ itemData, onSelect }) {
+export default function MealItem({ title, image, duration, complexity, affordability, onSelect }) {
     return (
         <View style={styles.mealItem}>
             <TouchableOpacity onPress={onSelect}>
                 <View>
                     <View style={{ ...styles.mealRow, ...styles.mealHeader }}>
                             <ImageBackground 
-                                source={{uri: itemData.item.imageUrl}} 
+                                source={{uri: image}} 
                                 style={styles.bgImage}
                             >
                                 <View style={styles.titleContainer}>
@@ -16,15 +16,15 @@ export default function MealItem({ itemData, onSelect }) {
                                         style={styles.title}
                                         numberOfLines={1}
                                     >   
-                                        {itemData.item.title}
+                                        {title}
                                     </Text>
                                 </View>
                             </ImageBackground>
                     </View>
                     <View style={{ ...styles.mealRow, ...styles.mealDetail }}>
-                        <Text>{itemData.item.duration} minutes</Text>
-                        <Text>{itemData.item.complexity.toUpperCase()}</Text>
-                        <Text>{itemData.item.affordability.toUpperCase()}</Text>
+                        <Text>{duration} minutes</Text>
+                        <Text>{complexity.toUpperCase()}</Text>
+                        <Text>{affordability.toUpperCase()}</Text>
                     </View>
                 </View>
             </TouchableOpacity>
@@ -42,14 +42,15 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end'
     },
     mealItem: {
+        alignSelf: 'center',
         height: 200,
         width: '95%',
         backgroundColor: '#f5f5f5',
         borderRadius: 10,
         overflow: 'hidden',
-        margin: 10,
         borderWidth: 1,
         borderColor: '#ccc',
+        marginTop: 10
     },
     mealHeader: {
         height: '85%'

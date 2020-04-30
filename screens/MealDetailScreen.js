@@ -1,22 +1,38 @@
 import React from 'react';
-import {View, Text, Button, StyleSheet} from 'react-native';
+import { ScrollView, View, Text, Button, StyleSheet, Image } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import { MEALS } from '../data/test-data';
 import CustomHeaderButton from '../components/CustomHeaderButton'
+import TextDefault from '../components/TextDefault';
+
+const ListItem = ({ children }) => {
+    return <View style={styles.listItem}>
+        <TextDefault>{children}</TextDefault>
+    </View>;
+};
 
 export default function MealDetailScreen({ navigation }) {
     const mealId = navigation.getParam('mealId');
     const selectedMeal = MEALS.find(meal => meal.id === mealId);
 
     return (
-        <View style={styles.screen}>
-            <Text>{selectedMeal.title}</Text>
-            <Button 
-                title="Back Home"
-                onPress={() => navigation.popToTop()}
-            />
-        </View>
+        <ScrollView>
+            <Image source={{uri: selectedMeal.imageUrl}} style={styles.image}/>
+            <View style={styles.details}>
+                <TextDefault>{selectedMeal.duration} minutes</TextDefault>
+                <TextDefault>{selectedMeal.complexity.toUpperCase()}</TextDefault>
+                <TextDefault>{selectedMeal.affordability.toUpperCase()}</TextDefault>
+            </View>
+            <Text style={styles.title}>Ingredients</Text>
+            {selectedMeal.ingredients.map(ingredient => 
+                <ListItem key={ingredient}>{ingredient}</ListItem>
+            )}
+            <Text style={styles.title}>Steps</Text>
+            {selectedMeal.steps.map(step => 
+                <ListItem key={step}>{step}</ListItem>
+            )}
+        </ScrollView>
     );
 }
 
@@ -39,9 +55,25 @@ MealDetailScreen.navigationOptions = (navigationData) => {
 }
 
 const styles = StyleSheet.create({
-    screen: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
+    title : {
+        fontFamily: 'open-sans-bold',
+        fontSize: 22,
+        textAlign: 'center'
+    },
+    image: {
+        width: '100%',
+        height: 200
+    },
+    details: {
+        flexDirection: 'row',
+        padding: 15,
+        justifyContent: 'space-around'
+    },
+    listItem: {
+        marginVertical: 10,
+        marginHorizontal: 20,
+        borderColor: '#ccc',
+        borderWidth: 1,
+        padding: 10
     }
 });

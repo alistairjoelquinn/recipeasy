@@ -17,12 +17,6 @@ export default function MealDetailScreen({ navigation }) {
     const mealId = navigation.getParam('mealId');
     const selectedMeal = meals.find(meal => meal.id === mealId);
 
-    useEffect(() => {
-        navigation.setParams({
-            mealTitle: selectedMeal.title
-        });
-    }, [selectedMeal])
-
     return (
         <ScrollView>
             <Image source={{uri: selectedMeal.imageUrl}} style={styles.image}/>
@@ -44,7 +38,6 @@ export default function MealDetailScreen({ navigation }) {
 }
 
 MealDetailScreen.navigationOptions = (navigationData) => {
-    const mealId = navigationData.navigation.getParam('mealId');
     const mealTitle = navigationData.navigation.getParam('mealTitle');
     return {
         headerTitle: mealTitle,

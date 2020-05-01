@@ -6,6 +6,7 @@ const initialState = {
     favouriteMeals: []
 }
 
-const mealReducer = (state, action) => {
+export default function mealsReducer(state = {initialState}, action) {
     return state;
-}
+};
+

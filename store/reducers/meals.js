@@ -19,13 +19,15 @@ export default function mealsReducer(state = initialState, action) {
                     favouriteMeals: updatedFav
                 }
             } else {
-                const meal = state.meals.find(meal => meal.id === action.mealId);
+                console.log('else block opened');
                 return {
                     ...state,
-                    favouriteMeals: {
-                        ...favouriteMeals,
-                        meal
-                    }
+                    favouriteMeals: [
+                        ...state.favouriteMeals,
+                        state.meals.find(meal => {
+                            return meal.id === action.mealId
+                        })
+                    ]
                 }
             }
         default: 

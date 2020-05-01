@@ -7,10 +7,9 @@ import MealList from '../components/MealList';
 export default function CategoryMealsScreen({ navigation }) {
     const catId = navigation.getParam('categoryId');
     const availableMeals = useSelector(state => {
-        console.log('state: ', state);
+        console.log('state.favouriteMeals: ', state.favouriteMeals);
         return state.meals.filteredMeals;
     });
-    console.log('availableMeals: ', availableMeals);
     const displayMeals = availableMeals.filter(meal => meal.categoryIds.indexOf(catId) >= 0);
     return (
         <MealList 

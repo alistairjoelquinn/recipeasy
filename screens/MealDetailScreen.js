@@ -18,6 +18,9 @@ export default function MealDetailScreen({ navigation }) {
 
     const meals = useSelector(state => state.meals.meals);
     const mealId = navigation.getParam('mealId');
+    const currentIsFavourite = useSelector(state => 
+        state.meals.favouriteMeals.some(meal => meal.id === mealId)
+    );
     const selectedMeal = meals.find(meal => meal.id === mealId);
     const toggleFavouriteHandler = useCallback(() => {
         dispatch(toggleFavourite(mealId));
@@ -28,6 +31,12 @@ export default function MealDetailScreen({ navigation }) {
             toggleFav: toggleFavouriteHandler
         });
     }, [toggleFavouriteHandler]);
+   
+    useEffect(() => {
+        navigation.setParams({
+            isFav: currentIsFavourite
+        });
+    }, [currentIsFavourite]);
 
     return (
         <ScrollView>
@@ -52,12 +61,13 @@ export default function MealDetailScreen({ navigation }) {
 MealDetailScreen.navigationOptions = (navigationData) => {
     const mealTitle = navigationData.navigation.getParam('mealTitle');
     const toggleFavourite = navigationData.navigation.getParam('toggleFav');
+    const isFav = navigationData.navigation.getParam('isFav');
     return {
         headerTitle: mealTitle,
         headerRight: () => <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
             <Item 
                 title="Favourite"
-                iconName="ios-star"
+                iconName={isFav ? "ios-star" : "ios-star-outline"}
                 onPress={toggleFavourite}
             />
         </HeaderButtons>

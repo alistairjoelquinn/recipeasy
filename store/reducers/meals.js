@@ -1,5 +1,5 @@
 import { MEALS } from '../../data/test-data';
-import { TOGGLE_FAVOURITE } from '../actions/meals';
+import { TOGGLE_FAVOURITE, SET_FILTERS } from '../actions/meals';
 
 const initialState = {
     meals: MEALS,
@@ -19,7 +19,6 @@ export default function mealsReducer(state = initialState, action) {
                     favouriteMeals: updatedFav
                 }
             } else {
-                console.log('else block opened');
                 return {
                     ...state,
                     favouriteMeals: [
@@ -30,6 +29,23 @@ export default function mealsReducer(state = initialState, action) {
                     ]
                 }
             }
+        case SET_FILTERS:
+            const appliedFilters = action.filters;
+            const filteredMeals = state.meals.filter(meal => {
+                if (appliedFilters.glutenFree && !meal.isGlutenFree) {
+                    return false
+                }
+                if (appliedFilters.lactoseFree && !meal.isLactoseFree) {
+                    return false
+                }
+                if (appliedFilters.vegan && !meal.isVegan) {
+                    return false
+                }
+                if (appliedFilters.vegetarian && !meal.isVegetarian) {
+                    return false
+                }
+                return true;
+            });
         default: 
             return state;
     }

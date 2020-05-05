@@ -34,7 +34,7 @@ export default function CategoriesScreen({ navigation }) {
 CategoriesScreen.navigationOptions = navData => {
     return (
         { 
-        headerTitle: 'Categories',
+        headerTitle: 'Recipeasy',
         headerLeft: 
         () => <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
                 <Item 

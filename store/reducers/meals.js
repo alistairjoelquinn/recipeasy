@@ -46,6 +46,10 @@ export default function mealsReducer(state = initialState, action) {
                 }
                 return true;
             });
+            return {
+                ...state,
+                filteredMeals: filteredMeals
+            };
         default: 
             return state;
     }
